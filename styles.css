@@ -1,0 +1,143 @@
+body{
+  position:fixed;
+  margin:0px;
+  padding:0px;
+  background-color:rgb(88,88,88);
+  text-align:center;
+  width:100vw;
+  height:100vh;
+}
+
+#settings-box{
+  text-align:left;
+  position:relative;
+  background-color:rgb(68,68,68);
+  box-shadow:0px 5px 10px rgb(48,48,48);
+  margin:0px;
+}
+
+#settings-box>div{
+  display:inline-block;
+  white-space:nowrap;
+}
+
+#game-box{
+  display:inline-block;
+  background-color:rgb(68,68,68);
+  margin:16px;
+}
+
+#game-box.mark-cells [class^='cell']{
+  border: dotted 1px rgb(46, 46, 46);
+}
+
+.button {
+  display:inline-block;
+  margin:6px 12px;
+  border:none;
+  box-shadow:3px 3px 3px rgb(66,66,66), 0px 0px 15px #009688 inset;
+  background:linear-gradient(to top, #00bfa5,#64ffda);
+  color:#26a69a;
+  height:38px;
+  margin:8px;
+  cursor:pointer;
+  vertical-align:top;
+  transition: box-shadow .1s ease-in-out;
+}
+
+.button:enabled:hover{
+  box-shadow:3px 3px 3px rgb(66,66,66), 0px 0px 15px #7ffaee inset;
+}
+
+.button:disabled{
+  background:linear-gradient(to top, #2b8f83,#78c7b5);
+  color:#277970;
+  box-shadow:3px 3px 3px rgb(66,66,66);
+  cursor:not-allowed;
+}
+
+#game-state{
+  min-width:100px;
+}
+
+input[type=range]:disabled{
+  cursor:not-allowed;
+}
+
+#reset-button{
+  display: block;
+  float: right;
+  margin: 0px;
+  width:120px;
+}
+
+#config-box{
+  background-color:rgb(96,96,96);
+  position:absolute;
+  display:block;
+  padding:12px;
+  color:rgb(244,244,244);
+  text-shadow:2px 2px 2px rgb(36, 36, 36);
+  width:260px;
+  top:110%;
+  left:6px;
+  box-shadow:4px 4px 10px 4px rgb(66,66,66);
+}
+
+.box-hidden{
+  display:none !important; 
+  border:solid 3px #33aaff;
+}
+
+#score-box{
+  display:inline-block;
+  min-width:260px;
+  margin:6px 12px;
+  height:38px;
+  margin:8px;
+  vertical-align:top;
+}
+
+#score-box>p, #score-box>input{
+  display:inline-block;
+  height:100%;
+  margin:0px 4px;
+  padding:0px;
+  font-size:22px;
+  color:rgb(244,244,244);
+  cursor:default;
+}
+
+#score-box>input{
+  width:140px;
+  border:none;
+}
+
+[class^='row']{
+  display:block;
+  white-space:nowrap;
+  font-size:0px;
+}
+
+[class^='cell']{
+  display:inline-block;
+  line-height:200%;
+  width:25px;
+  height:25px;
+  font-size:0px;
+}
+
+.fuel{
+  background-color:#ff7606;
+  border-radius:40%;
+}
+
+.fill{
+  background-color:#33aaff;
+  border:dotted 1px #2481c4;
+}
+
+.gameover{
+  background-color:#ef5350;
+  border:dotted 1px #c4312e;
+}

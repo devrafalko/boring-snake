@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Snake Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" defer="defer"></script>
+  <script src="controller.js"  defer="defer"></script>
+  <style id="cell-size"></style>
+</head>
+<body>
+    <div id="settings-box">
+      <div>
+        <button id="menu-button" class="button">
+          <i class="material-icons">menu</i>
+        </button>
+        <button id="game-state" class="button"></button>
+      </div>
+      <div id="score-box">
+        <p>Score:</p>
+        <input type="text" id="score-output" readonly="readonly" value="0"/>
+      </div>
+      <div id="config-box" class="box-hidden">
+        <p>Grids:</p>
+        <p class="range-field">
+          <input type="range" id="form-grids" min="4" max="60"/>
+        </p>
+        <p>Size:</p>
+        <p class="range-field">
+          <input type="range" id="form-size" min="10" max="30" />
+        </p>
+        <p>Speed:</p>
+        <p class="range-field">
+          <input type="range" id="form-speed" min="1" max="50" />
+        </p>
+        <button class="button" id="reset-button">Reset</button>
+      </div>
+    </div>
+    <div id="game-box"></div>
+</body>
+</html>
