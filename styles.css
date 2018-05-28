@@ -24,7 +24,7 @@ body{
 #game-box{
   display:inline-block;
   background-color:rgb(68,68,68);
-  margin:16px;
+  margin:16px 0px;
 }
 
 #game-box.mark-cells [class^='cell']{
@@ -91,14 +91,14 @@ input[type=range]:disabled{
 
 #score-box{
   display:inline-block;
-  min-width:260px;
+  white-space:nowrap;
   margin:6px 12px;
   height:38px;
   margin:8px;
   vertical-align:top;
 }
 
-#score-box>p, #score-box>input{
+#score-box>p{
   display:inline-block;
   height:100%;
   margin:0px 4px;
@@ -106,11 +106,6 @@ input[type=range]:disabled{
   font-size:22px;
   color:rgb(244,244,244);
   cursor:default;
-}
-
-#score-box>input{
-  width:140px;
-  border:none;
 }
 
 [class^='row']{
@@ -121,6 +116,7 @@ input[type=range]:disabled{
 
 [class^='cell']{
   display:inline-block;
+  box-sizing:border-box;
   line-height:200%;
   width:25px;
   height:25px;

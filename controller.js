@@ -25,6 +25,7 @@ var snake = {
   init:function(){
     this.addEvents();
     this.addControllers();
+    this.adjustGrids();
     this.initRanges();
     this.endGame();
   },
@@ -32,6 +33,7 @@ var snake = {
     document.body.addEventListener("click",(function(event){
       var clickConfigBox = this.dom.configBox.contains(event.target);
       var clickConfigButton = this.dom.configButton.contains(event.target);
+      var clickGameBox = this.dom.gameContainer.contains(event.target);
       var configBoxOpened = this.data.configBoxOpened === true;
       if((!clickConfigBox && !clickConfigButton) || (clickConfigButton && configBoxOpened)){
         this.dom.configBox.classList.add("box-hidden");
@@ -41,6 +43,22 @@ var snake = {
         this.dom.configBox.classList.remove("box-hidden");
         this.data.configBoxOpened = true;
       }
+
+      if(clickGameBox && this.data.gamePending){
+        var element = this.findCell(this.data.cells[0]);
+        var coords = {
+          x:event.clientX - (element.offsetLeft + (element.offsetWidth / 2)),
+          y:event.clientY - (element.offsetTop + (element.offsetHeight / 2))
+        };
+        var sides = {
+          x:["left","right"],
+          y:["up","down"]
+        };
+        var orientation = Math.abs(coords.x) > Math.abs(coords.y) ? "x":"y";
+        if(coords[orientation]>0) sides[orientation].reverse();
+        this.setDirection.apply(this,sides[orientation]);
+      }
+
     }).bind(this));
 
     this.dom.startButton.addEventListener("click",(function(event){
@@ -175,19 +193,27 @@ var snake = {
           }
           break;
         case 37:
-          this.data.turn = this.data.direction === "right" && this.data.cells.length > 1 ? "right":"left";
+          this.setDirection("left","right");
           break;
         case 38:
-          this.data.turn = this.data.direction === "down" && this.data.cells.length > 1 ? "down":"up";
+          this.setDirection("up","down");
           break;
         case 39:
-          this.data.turn = this.data.direction === "left" && this.data.cells.length > 1 ? "left":"right";
+          this.setDirection("right","left");
           break;
         case 40:
-          this.data.turn = this.data.direction === "up" && this.data.cells.length > 1 ? "up":"down";
+          this.setDirection("down","up");
           break;
       }
     }).bind(this))
+  },
+  adjustGrids: function(){
+    if(window.innerWidth < this.defaults.grids* this.defaults.size){
+      this.defaults.grids = Math.floor(window.innerWidth/this.defaults.size);
+    }
+  },
+  setDirection: function(direction,opposite){
+    this.data.turn = this.data.direction === opposite && this.data.cells.length > 1 ? opposite:direction;
   },
   mountNewInterval: function(){
     clearInterval(this.data.interval);
@@ -263,10 +289,10 @@ var snake = {
   refreshScore: function(action,val){
     switch(action){
       case "reset":
-        this.dom.score.value = 0;
+        this.dom.score.innerHTML = 0;
         break;
       case "add":
-        this.dom.score.value = Number(this.dom.score.value) + val;
+      this.dom.score.innerHTML = Number(this.dom.score.textContent) + val;
         break;
     }
   },
